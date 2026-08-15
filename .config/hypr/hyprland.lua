@@ -1,0 +1,8 @@
+require("monitors")
+require("workspaces")
+require("start")
+require("variables")
+require("general")
+require("rules")
+require("animations")
+require("keys")

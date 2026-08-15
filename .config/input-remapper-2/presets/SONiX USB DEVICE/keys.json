@@ -1,0 +1,38 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 97,
+                "origin_hash": "07c4787275a19cc547c041580204be9f"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Super_L",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 100,
+                "origin_hash": "07c4787275a19cc547c041580204be9f"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Super_L",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 127,
+                "origin_hash": "07c4787275a19cc547c041580204be9f"
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Super_R",
+        "mapping_type": "key_macro"
+    }
+]
