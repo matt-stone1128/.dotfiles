@@ -39,10 +39,10 @@
    ```toml
 	[templates.firefox-website-colors]
 	input_path = "path/to/template/"
-	output_path = "~/path/to/profile/colors.css"
+	output_path = "~/path/to/profile/chrome/colors.css"
    ```
 6. Copy all of the website themes from [here](https://github.com/InioX/matugen-themes/tree/main/websites) and put them into `chrome/websites`
-7. Make a new file called `UserContent.css` inside of the created folder
+7. Make a new file called `userContent.css` inside of the created folder
 8. Import the matugen colors
    ```css
 	@import url("/home/username/path/to/profile/chrome/colors.css");
@@ -58,7 +58,7 @@
 > Make sure the replaced paths are absolute (`/home/user`) instead of relative (`~/`)
 > Using relative paths will not import anything.
 
-#### Example `UserContent.css` file
+#### Example `userContent.css` file
 
 ```css
 @import url("/home/ini/.floorp/ini/chrome/colors.css");
@@ -71,29 +71,38 @@
 ## Templates for programs
 
 #### List of all templates
+- [Aerc](#aerc)
 - [Alacritty](#alacritty)
 - [ANSI sequences](#ansi-sequences)
 - [Btop](#btop)
 - [Cava](#cava)
 - [Cosmic](#cosmic)
 - [Clipse](#clipse)
+- [Discord (system24)](#discord-system24)
+- [Discord (Midnight)](#discord-midnight)
 - [Dunst](#dunst)
 - [Fuzzel](#fuzzel)
 - [Ghostty](#ghostty)
+- [Gnome-shell](#gnome-shell)
 - [GTK (3.0, 4.0)](#gtk)
 - [Helix](#helix)
+- [Heroic Games Launcher](#heroic)
 - [Hyprland & Hyprlock](#hyprland)
+- [Hyprwat](#hyprwat)
 - [Kitty](#kitty)
 - [Kvantum](#kvantum)
 - [Labwc](#labwc)
 - [Mako](#mako)
-- [McFly](#mcfly)
 - [MangoWC](#mangowc)
+- [McFly](#mcfly)
 - [Micro](#micro)
-- [Midnight Discord](#midnight-discord)
 - [Neovim](#neovim)
+- [Neovim plugin](#neovim-plugin)
 - [Niri](#niri)
+- [OBS](#obs)
+- [Obsidian](#obsidian)
 - [Opencode](#opencode)
+- [Papirus Folders](#papirus-folders)
 - [PrismLauncher](#prismlauncher)
 - [Pywalfox](#pywalfox)
 - [Qt (qt5, qt6)](#qt)
@@ -103,24 +112,53 @@
 - [Spicetify Sleek (Spotify)](#spicetify-sleek)
 - [Starship](#starship)
 - [Sway](#sway)
+- [Swaybar](#swaybar)
 - [Television](#television)
+- [Telegram](#telegram)
 - [Tmux](#tmux)
+- [Zellij](#zellij)
 - [Vivaldi](#vivaldi)
+- [VS Code](#vs-code)
 - [Waybar](#waybar)
 - [WezTerm](#wezterm)
 - [Windows Terminal](#windows-terminal)
 - [Wine](#wine)
 - [Wlogout](#wlogout)
 - [Yazi](#yazi)
+- [Zen Browser](#zen-browser)
 - [Zathura](#zathura)
 - [Zed](#zed)
 - [Wofi](#wofi)
 - [SwayNC](#swaync)
 - [Steam](#steam)
-- [OBS](#obs)
-- [Telegram](#telegram)
+
+### Aerc
+
+Make a new template file and paste the content from [here](./templates/aerc) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```
+[config]
+# ...
+[templates.aerc]
+input_path = 'path/to/template'
+output_path = '~/.config/aerc/stylesets/matugen'
+# ...
+```
+Then, add/change this line in your '~/.config/aerc/aerc.conf'
+
+```conf
+[ui]
+styleset-name=matugen
+```
 
 ### Alacritty
+
+Make a new template file and paste the content from [here](./templates/alacritty.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -136,13 +174,18 @@ import = ["colors.toml"]
 ```
 
 ### ANSI Sequences
+
+Make a new template file and paste the content from [here](./templates/terminal-sequences) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.terminal-sequences]
 input_path = 'path/to/template'
 output_path = "~/.cache/terminal-sequences"
-post_hook = "cat ~/.cache/terminal-sequences > /dev/pts/[0-9]*" # export the sequences to every running terminal
+post_hook = "tee /dev/pts/[0-9]* < ~/.cache/terminal-sequences" # export the sequences to every running terminal
 ```
 
 The target for post_hook changes depending on your OS.
@@ -154,6 +197,11 @@ Then, in a profile script of your choice, put `[[ -f ~/.cache/color-sequences ]]
 
 
 ### Btop
+
+Make a new template file and paste the content from [here](./templates/btop.theme) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -166,11 +214,16 @@ post_hook = 'pkill -USR2 btop || true'
 Then, choose `matugen` theme from btop settings.
 
 ### Cava
+
+Make a new template file and paste the content from [here](./templates/cava-colors.ini) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.cava]
-input_path = '~/.config/matugen/templates/cava-colors.ini'
+input_path = '/path/to/template/'
 output_path = '~/.config/cava/themes/your-theme'
 post_hook = 'pkill -USR1 cava'
 # ...
@@ -182,6 +235,11 @@ theme = 'your-theme'
 ```
 
 ### Cosmic
+
+Make a new template file and paste the content from [here](./templates/cosmic_theme.ron) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -196,6 +254,11 @@ Then, in Cosmic Settings app, under Desktop -> Appearance, click import and sele
 ![Cosmic Screenshot](assets/cosmic-screenshot.png)
 
 ### Clipse
+
+Make a new template file and paste the content from [here](./templates/clipse_theme.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -205,7 +268,52 @@ output_path = '~/.config/clipse/custom_theme.json'
 # ...
 ```
 
+### Discord Midnight
+
+Make a new template file and paste the content from [here](./templates/midnight-discord.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.vesktop]
+input_path = 'path/to/template'
+output_path = '~/.config/vesktop/themes/midnight-discord.css'
+```
+
+> [!NOTE]
+> ``output_path`` may be different if you are using Flatpak version of Vesktop.
+
+Then, activate the theme from vencord themes.
+
+### Discord system24
+
+The system24 styling process is the exact same as Midnight:
+Make a new template file and paste the content from [here](./templates/system24.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.vesktop]
+input_path = 'path/to/template'
+output_path = '~/.config/vesktop/themes/system24.css'
+```
+
+> [!NOTE]
+> ``output_path`` may be different if you are using Flatpak version of Vesktop.
+
+Then, activate the theme from vencord themes.
+
+
 ### Dunst
+
+Make a new template file and paste the content from [here](./templates/dunstrc-colors) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -217,6 +325,11 @@ post_hook = 'dunstctl reload'
 ```
 
 ### Fuzzel
+
+Make a new template file and paste the content from [here](./templates/fuzzel.ini) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -233,6 +346,11 @@ include = "~/.config/fuzzel/colors.ini"
 ```
 
 ### Ghostty
+
+Make a new template file and paste the content from [here](./templates/ghostty) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -245,10 +363,47 @@ post_hook = 'pkill -SIGUSR2 ghostty'
 Then, add this line to your `~/.config/ghostty/config`:
 
 ```ini
-theme = "Matugen"  
+theme = "Matugen"
+```
+
+### Gnome-shell
+
+Make a new template file and paste the content from [here](./templates/gnome-shell.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.gnome-shell]
+input_path = '~/.config/matugen/templates/gnome-shell.css'
+output_path = '~/.themes/Material-Gnome/gnome-shell/gnome-shell.css'
+post_hook = "dconf write /org/gnome/shell/extensions/user-theme/name \"'default'\" && dconf write /org/gnome/shell/extensions/user-theme/name \"'Material-Gnome'\""
+# ...
+```
+Then, create `index.theme` inside `~/.themes/Material-Gnome/` with
+
+```ini
+Type=X-GNOME-Metatheme
+[Desktop Entry]
+Name=Material-Gnome
+Comment=An Flat Gtk+ theme based on Matugen color generator
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Material-Gnome
+MetacityTheme=Material-Gnome
+IconTheme=Tela-circle-Dark
+CursorTheme=Tokyonight-cursors
+ButtonLayout=close,minimize,maximize:menu
 ```
 
 ### GTK
+
+Make a new template file and paste the content from [here](./templates/gtk-colors.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -260,6 +415,7 @@ post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings s
 [templates.gtk4]
 input_path = 'path/to/template'
 output_path = '~/.config/gtk-4.0/colors.css'
+post_hook = '~/.config/matugen/post-hook-scripts/gtk-themes-reload.sh'
 # ...
 ```
 Then, add this line to the top of your `~/.config/gtk-3.0/gtk.css` and `~/.config/gtk-4.0/gtk.css`:
@@ -269,6 +425,11 @@ Then, add this line to the top of your `~/.config/gtk-3.0/gtk.css` and `~/.confi
 ```
 
 ### Helix
+
+Make a new template file and paste the content from [here](./templates/helix.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -283,22 +444,69 @@ Then, add this line to your `~/.config/helix/config.toml`:
 theme = "matugen"
 ```
 
+### Heroic
+
+Make a new template file and paste the content from [here](./templates/heroic.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[templates.heroic]
+input_path = 'path/to/template'
+output_path = 'your/own/path/to/matugen.css'
+# ...
+```
+
+Then, go to `Settings`, add your output_path directory to `Custom Themes Path` and select `matugen.css`.
+
 ### Hyprland
+
+Make a new template file and paste the content from [here](./templates/hyprland-colors.conf) (`.conf`) or [here](./templates/hyprland-colors.lua) (`.lua`) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.hyprland]
 input_path = 'path/to/template'
-output_path = '~/.config/hypr/colors.conf'
+output_path = '~/.config/hypr/colors.conf' # If using lua config replace *.conf* with *.lua* at the end
 # ...
 ```
-Then, add this line to the top of your `~/.config/hypr/hyprland.conf` and/or `~/.config/hypr/hyprlock.conf` file:
-
+Then, add this line to the top of your `~/.config/hypr/hyprland.conf` (or) `~/.config/hypr/hyprland.lua` and/or `~/.config/hypr/hyprlock.conf` 
 ```hyprlang
 source = colors.conf
 ```
+If using Lua 
+
+```Lua_config
+require("colors")
+```
+
+### Hyprwat
+
+Make a new template file and paste the content from [here](./templates/hyprwat-colors.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+# ...
+[templates.hyprwat]
+input_path = 'path/to/template'
+output_path = '~/.config/hyprwat/hyprwat-colors.conf'
+```
+Then, add this line to the top of your `~/.config/hyprwat/hyprwat.conf` file:
+
+```conf
+source = ~/.config/hyprwat/hyprwat-colors.conf
+```
 
 ### Kitty
+
+Make a new template file and paste the content from [here](./templates/kitty-colors.conf) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -311,7 +519,17 @@ post_hook = "kitty +kitten themes --reload-in=all Matugen"
 
 Then, you just need to apply the theme once. Run `kitten themes` and select Matugen under the User section, finally just set it to update your `kitty.conf`.
 
+If the `post_hook` above doesn't work, you can replace it with this instead:
+```
+post_hook = "pkill -SIGUSR1 kitty"
+```
+
 ### Kvantum
+
+Make new template files and paste the content from [here](./templates/kvantum-colors.kvconfig) and [here](./templates/kvantum-colors.svg) into the files.
+
+Then replace `/path/to/template/` with the path to your previously created template files.
+
 ```toml
 [config]
 # ...
@@ -332,6 +550,11 @@ theme=matugen
 ```
 
 ### Labwc
+
+Make a new template file and paste the content from [here](./templates/labwc) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -343,6 +566,11 @@ post_hook = 'labwc -reload'
 ```
 
 ### Mako
+
+Make a new template file and paste the content from [here](./templates/mako) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -358,7 +586,34 @@ Then, add this line to the bottom of your `~/.config/mako/config` file:
 include=~/.config/mako/mako-colors
 ```
 
+
+### MangoWC
+
+Make a new template file and paste the content from [here](./templates/mango.conf) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.mango]
+input_path = 'path/to/template'
+output_path = '~/.config/mango/colors.conf'
+post_hook = 'mmsg -d reload_config'
+# ...
+```
+Then, add this line to your `~/.config/mango/config.conf` file:
+
+```conf
+source=~/.config/mango/colors.conf
+```
+
 ### McFly
+
+Make a new template file and paste the content from [here](./templates/mcfly.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -376,23 +631,13 @@ output_path = '~/.local/share/mcfly/config.toml'
 
 McFly will automatically pick up the config file from this location and use the colors. You don't have do to anything else.
 
-### MangoWC
-```toml
-[config]
-# ...
-[templates.mango]
-input_path = 'path/to/template'
-output_path = '~/.config/mango/colors.conf'
-post_hook = 'mmsg -d reload_config' 
-# ...
-```
-Then, add this line to your `~/.config/mango/config.conf` file:
-
-```conf
-source=~/.config/mango/colors.conf
-```
 
 ### Micro
+
+Make a new template file and paste the content from [here](./templates/micro.micro) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -402,32 +647,23 @@ output_path = '~/.config/micro/colorschemes/matugen.micro'
 # ...
 ```
 
-Then, prss `Ctrl+E` in micro editor and enter `set colorscheme matugen`
-
-### Midnight Discord
-```toml
-[config]
-# ...
-[templates.vesktop]
-input_path = 'path/to/template'
-output_path = '~/.config/vesktop/themes/midnight-discord.css'
-```
-
-> [!NOTE]
-> ``output_path`` may be different if you are using Flatpak version of Vesktop.
-
-Then, activate the theme from vencord themes.
+Then, press `Ctrl+E` in micro editor and enter `set colorscheme matugen`
 
 ### Neovim
 
 Styling Neovim with matugen is an involved process due to working with plugins and various highlight groups. For information on how to leverage plugins for doing the "heavy-lifting", see [here](./templates/neovim).
 
 Alternatively, you can style Neovim through its configuration standard in `.vim` format.
+
+Make a new template file and paste the content from [here](./templates/nvim-colors.vim) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.nvim]
-input_path = 'path/to/templates/nvim-colors.vim'
+input_path = 'path/to/template'
 output_path = '~/.config/nvim/colors/matugen.vim'
 post_hook = 'pkill -SIGUSR1 nvim'
 ```
@@ -447,12 +683,50 @@ vim.api.nvim_create_autocmd("Signal", {
 })
 ```
 
+### Neovim plugin
+
+For a dedicated Neovim plugin with a semantic palette, check out [matugen.nvim](https://github.com/Senal-D-A-Gunaratna/matugen.nvim).
+
+**1. Copy the template**
+
+Copy the [template](https://github.com/Senal-D-A-Gunaratna/matugen.nvim/blob/main/nvim-colors.json) to your matugen templates folder
+
+**2. Add to your `config.toml`**
+
+```toml
+[templates.neovim]
+input_path = "path/to/templates/neovim/nvim-colors.json"
+output_path = "~/.config/matugen/themes/nvim-colors.json"
+post_hook = "pkill -SIGUSR1 nvim"
+```
+
+**3. Install via `lazy.nvim`**
+
+```lua
+{
+  "Senal-D-A-Gunaratna/matugen.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {
+    load_theme = true, -- set this to false to stop the theme from loading
+
+    -- Path to the JSON/JSONC file generated by matugen
+    palette_path = "~/.config/matugen/themes/nvim-colors.json",
+  },
+},
+```
+
 ### Niri
+
+Make a new template file and paste the content from [here](./templates/niri-colors.kdl) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.niri]
-input_path = 'path/to/templates/niri-colors.kdl'
+input_path = 'path/to/templates/'
 output_path = '~/.config/niri/colors.kdl'
 post_hook = 'niri msg action load-config-file'
 # ...
@@ -477,7 +751,45 @@ layout {
 include "./colors.kdl"
 ```
 
+### OBS
+
+Make a new template file and paste the content from [here](./templates/matugen.obt) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.obs]
+input_path = 'path/to/template'
+output_path = '~/.config/obs-studio/themes/matugen.obt'
+# ...
+```
+After: Open OBS > File > Settings > Appearance > Theme > Matugen
+
+### Obsidian
+
+Make a new template file and paste the content from [here](./templates/obsidian.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.obsidian]
+input_path = 'path/to/template'
+output_path = 'yourOwnPath/to/obsidianVault/.obsidian/snippets/matugen.css'
+# ...
+```
+> ![NOTE] For Obsidian, you might need to make multiple template with different output_path entry if you have multiple Obsidian Vaults.
+After: Open Obsidian > Settings > Appearance > CSS snippets > Turn on matugen.css
+
 ### OpenCode
+
+Make a new template file and paste the content from [here](./templates/opencode-colors.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -486,9 +798,66 @@ input_path = '~/.config/matugen/templates/opencode.json'
 output_path = '~/.config/opencode/themes/matugen.json'
 # ...
 ```
-In OpenCode use '/theme', select matugen, exit and restart the app. Since options are all loaded into memory at runtime, there is no on-the-fly changes to the theme. 
+In OpenCode use '/theme', select matugen, exit and restart the app. Since options are all loaded into memory at runtime, there is no on-the-fly changes to the theme.
+
+### Papirus Folders
+
+Syncs Papirus Folders colors automatically. It picks the closest Papirus folder to primary accent from the wallpaper.
+
+Make sure to add a sudoers drop-in so `papirus-folders` can run without a password prompt in the posthook:
+```bash
+echo "$USER ALL=(ALL) NOPASSWD: $(which papirus-folders)" | sudo tee /etc/sudoers.d/papirus-folders
+sudo chmod 440 /etc/sudoers.d/papirus-folders
+```
+
+Make a new template file and paste the content from [here](./templates/papirus-color) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+Then in your `config.toml`:
+```toml
+[config]
+# ...
+[templates.papirus-folders]
+input_path = '~/.config/matugen/templates/papirus-color'
+colors_to_compare = [
+    { name = "black",      color = "#4f4f4f" },
+    { name = "blue",       color = "#5294e2" },
+    { name = "bluegrey",   color = "#607d8b" },
+    { name = "brown",      color = "#ae8e6c" },
+    { name = "carmine",    color = "#a30002" },
+    { name = "cyan",       color = "#00bcd4" },
+    { name = "darkcyan",   color = "#45abb7" },
+    { name = "deeporange", color = "#eb6637" },
+    { name = "green",      color = "#87b158" },
+    { name = "grey",       color = "#8e8e8e" },
+    { name = "indigo",     color = "#5c6bc0" },
+    { name = "magenta",    color = "#ca71df" },
+    { name = "nordic",     color = "#81a1c1" },
+    { name = "orange",     color = "#ee923a" },
+    { name = "palebrown",  color = "#d1bfae" },
+    { name = "paleorange", color = "#eeca8f" },
+    { name = "pink",       color = "#f06292" },
+    { name = "red",        color = "#e25252" },
+    { name = "teal",       color = "#16a085" },
+    { name = "violet",     color = "#7e57c2" },
+    { name = "white",      color = "#e4e4e4" },
+    { name = "yaru",       color = "#676767" },
+    { name = "yellow",     color = "#f9bd30" },
+]
+compare_to = "{{ colors.primary.default.hex }}"
+post_hook = 'nohup sudo -n papirus-folders -C {{ closest_color }} -u > /dev/null 2>&1 &'
+index = 1
+# ...
+```
+The `{{ closest_color }}` is the name of the nearest one to primary and is passed straight to `papirus-folders -C`.
 
 ### PrismLauncher
+
+Make a new template file and paste the content from [here](./templates/prismlauncher.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -501,6 +870,11 @@ In PrismLauncher, to set the theme, navigate to settings, then appearance, where
 
 
 ### Pywalfox
+
+Make a new template file and paste the content from [here](./templates/pywalfox-colors.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -522,10 +896,14 @@ post_hook = 'pywalfox update'
 > [!NOTE] Auto here doesnt follow your matugen theme, its based on time of day
 ![Pywalfox Theme Switch](assets/pywalfox-screenshot.png)
 
-### Qt 
+### Qt
 
 > [!WARNING]
 > If your QT themes break when you update your system its most likely your qt libs are mismatched between `qtxct-kde` application and qt lib packages installed on the system. To fix this you just need to recompile the application.
+
+Make a new template file and paste the content from [here](./templates/qtct-colors.conf) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
 
 ```toml
 [config]
@@ -549,11 +927,16 @@ custom_palette=true
 
 For another method, the output path needs to be `~/.local/share/color-schemes/` in order for qt*ct to be able to find the color sheme
 
+Make a new template file and paste the content from [here](./templates/Matugen.colors) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+
 ```toml
 [config]
 # ...
 [templates.color-scheme]
-input_path = '~/.config/matugen/templates/Matugen.colors'
+input_path = '/path/to/template/'
 output_path = '~/.local/share/color-schemes/Matugen.colors'
 # ...
 ```
@@ -584,6 +967,11 @@ yay -S darkly-bin
 ```
 
 ### Quickshell
+
+Make a new template file and paste the content from [here](./templates/quickshell.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -821,6 +1209,11 @@ color: Colors.base16.base00
 ```
 
 ### Rmpc
+
+Make a new template file and paste the content from [here](./templates/rmpc/rmpc.ron) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -842,6 +1235,11 @@ Then, edit your `~/.config/rmpc/config.ron` to switch to the matugen theme:
 > See [nix-hm-example](./templates/rmpc/nix-hm-example/) for an example of how to use with Nix Home Manager.
 
 ### Rofi
+
+Make a new template file and paste the content from [here](./templates/rofi-colors.rasi) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -864,13 +1262,18 @@ You can now use all the color variables inside of the `config.rasi`, for example
 ```
 
 ### Spicetify Sleek
+
+Make a new template file and paste the content from [here](./templates/spicetify.ini) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.spotify]
 input_path = 'path/to/template'
 output_path = '~/.config/spicetify/Themes/Sleek/color.ini'
-post_hook = 'spicetify watch -s 2>&1 | sed "/Reloaded Spotify/q"'
+post_hook = 'pgrep -x spicetify > /dev/null || spicetify apply -n'
 # ...
 ```
 Then, add this line to your `~/.config/spicetify/config-xpui.ini` file:
@@ -886,20 +1289,14 @@ curl -L --create-dirs \
 	-o ~/.config/spicetify/Themes/Sleek/user.css \
 	https://raw.githubusercontent.com/spicetify/spicetify-themes/master/Sleek/user.css
 ```
-Now, start spotify using spicetify command:
-
-```bash
-spicetify watch -s
-```
-> [!NOTE]
->> `spicetify watch -s` might fails to start flatpak version of spotify. In
->> that case uncomment the `post_hook` and start spotify using following command:
->>
->> ```bash
->> flatpak run com.spotify.Client  --remote-debugging-port=9222 --remote-allow-origins='*'
->> ```
+Start spotify. Now it will update theme in real time.
 
 ### Starship
+
+Make a new template file and paste the content from [here](./templates/starship-colors.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -909,7 +1306,34 @@ output_path = '~/.config/starship.toml'
 # ...
 ```
 
+### Steam
+
+Make a new template file and paste the content from [here](./templates/steam.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.steam]
+input_path = 'path/to/template'
+output_path = '~/.config/AdwSteamGtk/custom.css'
+post_hook =  'adwaita-steam-gtk -i'
+# ...
+```
+**IMPORTANT**:
+
+1. Install adwsteamgtk if you haven’t already.
+
+
+2. In Preferences → Custom CSS, make sure Custom CSS is enabled!
+
 ### Sway
+
+Make a new template file and paste the content from [here](./templates/sway-colors.conf) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -925,7 +1349,74 @@ Then, add this line to your `~/.config/sway/config` file:
 include colors.conf
 ```
 
+### Swaybar
+
+Make a new template file and paste the content from [here](./templates/swaybar-colors.conf) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.swaybar]
+input_path = 'path/to/template'
+output_path = '~/.config/sway/bar-colors.conf'
+post_hook = 'swaymsg reload'
+# ...
+```
+Then, add this line to your `~/.config/sway/config` file:
+
+```conf
+include bar-colors.conf
+```
+
+### SwayNC
+
+Make a new template file and paste the content from [here](./templates/colors.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+Add to `config.toml`:
+```toml
+[config]
+# ...
+[templates.swaync]
+input_path = "path/to/template"
+output_path = "~/.config/swaync/colors.css"
+post_hook = "swaync-client -rs"
+```
+Then import the `colors.css` to `~/.config/swaync/style.css`:
+```css
+@import "colors.css";
+```
+
+### Telegram
+
+Make a new template file and paste the content from [here](./templates/telegram.tdesktop-theme) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
+```toml
+[config]
+# ...
+[templates.telegram]
+input_path = 'path/to/template'
+output_path = 'out/path'
+# ...
+```
+**IMPORTANT:** Telegram does not support automatically applying themes.
+To apply a theme, follow these steps:
+1. Open Telegram.
+2. Drag and drop the theme file into any chat.
+3. Send the file.
+4. Open the sent file and apply the theme.
+
 ### Television
+
+Make a new template file and paste the content from [here](./templates/television.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -942,13 +1433,18 @@ theme = "matugen"
 ```
 
 ### Tmux
+
+Make a new template file and paste the content from [here](./templates/tmux-colors.conf) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.tmux]
 input_path = 'path/to/template'
 output_path = '~/.config/tmux/generated.conf'
-post_hook = 'tmux source-file ~/.config/tmux/generated.conf' 
+post_hook = 'tmux source-file ~/.config/tmux/generated.conf'
 # ...
 ```
 1. Add a `tmux source-file <OUTPUT_PATH>` line at the end of your
@@ -989,19 +1485,49 @@ source-file ~/.config/tmux/generated.conf
 ```
 
 ### Vivaldi
+
+Make a new template file and paste the content from [here](./templates/vivaldi.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
 [templates.vivaldi]
 input_path = 'path/to/template'
-output_path = 'path/to/vivaldi_css/vivaldi.css' 
+output_path = 'path/to/vivaldi_css/vivaldi.css'
 # ...
 ```
 1. In vivaldi://experiments, enable “Allow for using CSS modifications”.
 2. In Settings > Appearance > Custom UI Modifications, select the folder where you’ll store matugen vivaldi.css output.
 Note that you can store vivaldi.css anywhere in a separate folder.
 
+### VS Code
+
+Install the [Matugen Theme](https://marketplace.visualstudio.com/items?itemName=haikalllp.matugen-theme) extension from the VS Code Marketplace or [Open VSX](https://open-vsx.org/) (for VSCodium).
+
+Make new template files and paste the content from [here](./templates/vscode-colors.json) and [here](vscode-colors.json) into the files.
+
+Then replace `/path/to/template/` with the path to your previously created template files.
+
+```toml
+[config]
+# ...
+[templates.vscode-raw]
+input_path = './templates/vscode-colors'
+output_path = '~/.cache/matugen/vscode-colors'
+
+[templates.vscode-json]
+input_path = './templates/vscode-colors.json'
+output_path = '~/.cache/matugen/vscode-colors.json'
+```
+
 ### Waybar
+
+Make a new template file and paste the content from [here](./templates/colors.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1026,6 +1552,11 @@ You can now use all the color variables inside the file:
 ```
 
 ### WezTerm
+
+Make a new template file and paste the content from [here](./templates/wezterm_theme.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1045,6 +1576,11 @@ config.color_scheme = "matugen_theme"
 ```
 
 ### Windows Terminal
+
+Make a new template file and paste the content from [here](./templates/windows_term.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1058,6 +1594,11 @@ post_hook = "powershell path\to\template_post.ps1" # to actually apply the schem
 This will make a color scheme preset in the Windows Terminal.
 
 ### Wine
+
+Make a new template file and paste the content from [here](./templates/wine.reg) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1074,6 +1615,11 @@ WINEPREFIX=~/path/to/your/prefix matugen <your arguments>
 ```
 
 ### Wlogout
+
+Make a new template file and paste the content from [here](./templates/colors.css) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1096,6 +1642,11 @@ You can now use all the color variables inside the file:
 ```
 
 ### Yazi
+
+Make a new template file and paste the content from [here](./templates/yazi-theme.toml) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1105,7 +1656,40 @@ output_path = '~/.config/yazi/theme.toml'
 # ...
 ```
 
+### Zen Browser
+
+Make new template files and paste the content from [here](./templates/zen-userchrome.css) and [here](./templates/zen-usercontent.css) into the files.
+
+Then replace `/path/to/template/` with the path to your previously created template files.
+
+```toml
+[templates.zen-userchrome]
+input_path = './templates/zen-userchrome.css'
+output_path = '~/.zen-profiles/abc123.default/chrome/zen-userChrome.css'
+
+[templates.zen-usercontent]
+input_path = './templates/zen-usercontent.css'
+output_path = '~/.zen-profiles/abc123.default/chrome/zen-userContent.css'
+```
+
+1. Go to `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
+2. Find your profile directory at `about:support` and create a `chrome` folder inside it.
+3. Create `userContent.css` and `userChrome.css` in your `chrome` folder, importing the matugen files with absolute paths:
+
+   ```css
+   @import url("/home/user/.zen-profiles/abc123.default/chrome/zen-userContent.css");
+   @import url("/home/user/.zen-profiles/abc123.default/chrome/zen-userChrome.css");
+   ```
+
+> [!WARNING]
+> The paths in `@import` must be absolute, not relative.
+
 ### Zathura
+
+Make a new template file and paste the content from [here](./templates/zathura-colors) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1127,6 +1711,11 @@ set font "FiraCode Nerd Font 12"
 ```
 
 ### Zed
+
+Make a new template file and paste the content from [here](./templates/zed-colors.json) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
@@ -1138,14 +1727,17 @@ output_path = '~/.config/zed/themes/matugen.json'
 Then, choose `Matugen Dark` or `Matugen Light` theme from Zed settings.
 
 ### Wofi
-Copy the `colors.css` to `~/.config/matugen`.
+
+Make a new template file and paste the content from [here](./templates/zellij-theme.kdl.tera) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
 
 Add to `config.toml`
 ```toml
 [config]
 # ...
 [templates.wofi]
-input_path = "./colors.css"
+input_path = "/path/to/template"
 output_path = "~/.config/wofi/colors.css"
 ```
 Then import the `colors.css` to `~/.config/wofi/style.css`:
@@ -1153,77 +1745,34 @@ Then import the `colors.css` to `~/.config/wofi/style.css`:
 @import "colors.css";
 ```
 
-### SwayNC
-Copy the `colors.css` to `~/.config/matugen`.
+### Zellij
 
-Add to `config.toml`:
+Make a new template file and paste the content from [here](./templates/niri-colors.kdl) into the file.
+
+Then replace `/path/to/template/` with the path to your previously created template file.
+
 ```toml
 [config]
 # ...
-[templates.swaync]
-input_path = "./colors.css"
-output_path = "~/.config/swaync/colors.css"
-post_hook = "swaync-client -rs"
-```
-Then import the `colors.css` to `~/.config/swaync/style.css`:
-```css
-@import "colors.css";
-```
-### Steam
-```toml
-[config]
-# ...
-[templates.steam]
+[templates.zellij]
 input_path = 'path/to/template'
-output_path = '~/.config/AdwSteamGtk/custom.css'
-post_hook =  'adwaita-steam-gtk -i'
-# ...
+output_path = '~/.config/zellij/themes/matugen.kdl'
+
+# Add this line to get hot-reloading. Without it, the new theme will only
+# appear on next start
+post_hook = 'touch ~/.config/zellij/config.kdl'
 ```
-**IMPORTANT**:
 
-1. Install adwsteamgtk if you haven’t already.
-
-
-2. In Preferences → Custom CSS, make sure Custom CSS is enabled!
-
-### OBS
-```toml
-[config]
-# ...
-[templates.obs]
-input_path = 'path/to/template'
-output_path = '~/.config/obs-studio/themes/matugen.obt'
-# ...
+Then, add this line in your config file (`~/.config/zellij/config.kdl`):
+```conf
+theme "matugen"
 ```
-After: Open OBS > File > Settings > Appearance > Theme > Matugen
 
-### Obsidian
-```toml
-[config]
-# ...
-[templates.obsidian]
-input_path = 'path/to/template'
-output_path = 'yourOwnPath/to/obsidianVault/.obsidian/snippets/matugen.css'
-# ...
+You can also load the theme from the command line when starting zellij:
+```shell
+zellij options --theme matugen
 ```
-> ![NOTE] For Obsidian, you might need to make multiple template with different output_path entry if you have multiple Obsidian Vaults.
-After: Open Obsidian > Settings > Appearance > CSS snippets > Turn on matugen.css
 
-### Telegram
-```toml
-[config]
-# ...
-[templates.telegram]
-input_path = 'path/to/template'
-output_path = 'out/path'
-# ...
-```
-**IMPORTANT:** Telegram does not support automatically applying themes.  
-To apply a theme, follow these steps:  
-1. Open Telegram.  
-2. Drag and drop the theme file into any chat.  
-3. Send the file.  
-4. Open the sent file and apply the theme.
 
 <h2 class="acknowledgements">
      <sub>

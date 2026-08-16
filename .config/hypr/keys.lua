@@ -168,3 +168,7 @@ bind("ALT + W",     "Wallpaper selector", run("variety --selector"))
 -- Screenshots
 bind("PRINT",           "Screenshot region", run('grim -g "$(slurp)" - | wl-copy'))
 bind(mod .. " + PRINT", "Screenshot screen", run("grim - | wl-copy"))
+
+-- Copyq
+
+bind(mod .. " + SHIFT + V",  "Copyq",      run("copyq toggle"))

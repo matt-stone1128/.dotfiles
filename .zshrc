@@ -134,16 +134,10 @@ unsetopt SHARE_HISTORY
 export HISTCONTROL=ignoreboth:erasedups
 
 ### EXPORT
-export TERM="xterm-256color"                      # getting proper colors
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
-export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
-
-# export EDITOR="emacs -nw"
-# export VISUAL="emacs -nw"
-
-# export EDITOR="subl -w"
-
+# export TERM="xterm-256color"                      # getting proper colors
+# export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+# export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
+# export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
 # (cat ~/.cache/wal/sequences &)
 ### SET FZF DEFAULTS
 export FZF_DEFAULT_OPTS="--layout=reverse --exact --border=bold --border=rounded --margin=3% --color=dark"
@@ -601,7 +595,7 @@ alias pamac-unlock="sudo rm /var/tmp/pamac/dbs/db.lock"
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 
 # reporting tools - leave this in for ATT
-# fastfetch -c ~/.config/fastfetch/examples/4.jsonc
+#fastfetch -c ~/.config/fastfetch/examples/4.jsonc
 #neofetch
 #pfetch
 fastfetch
