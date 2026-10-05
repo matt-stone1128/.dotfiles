@@ -1,5 +1,4 @@
-;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
+;;; $DOOMDIR/packages.el -*- lexical-binding: t; no-byte-compile: t -*-
 
 ;; To install a package:
 ;;
@@ -52,15 +51,16 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
-
 (package! all-the-icons)
-(package! all-the-icons-dired)
+;; (package! all-the-icons-dired)
 (package! beacon)         ;; Honestly really nice
 (package! cl-lib)
 (package! cl-libify)      ;; This is important to suppress errors
+(package! peep-dired)
 (package! dashboard)
 (package! dired-sidebar)
 (package! dired-hacks)
+(package! centaur-tabs)
 (package! rainbow-delimiters)
 (package! colorful-mode)
 (package! kurecolor)
@@ -68,13 +68,10 @@
 (package! pinentry)
 (package! sx)
 (package! simpleclip)
-(package! tldr)
-(package! hyprlang-ts-mode
-  :recipe (:host github :repo "Nathan-Melaku/hyprlang-ts-mode"))
 (package! drag-stuff)
 (package! efar
   :recipe (:host github :repo "suntsov/efar"))
-(package! frames-only-mode)
+
 ;; org
 (package! org-auto-tangle)
 (package! magit-todos)

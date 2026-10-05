@@ -3,22 +3,10 @@
   "position": "top",
   "height": 24,
   "spacing": 6,
-  "modules-left": ["hyprland/workspaces", "hyprland/window", "custom/hypr_layout"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
 
-
-"custom/hypr_layout": {
-	"exec": "$HOME/.config/hypr/scripts/HyprLayoutModule.sh status",
-	"return-type": "json",
-	"interval": 2,
-	"signal": 8,
-	"format": "{}",
-	"on-click": "$HOME/.config/hypr/scripts/HyprLayoutModule.sh menu",
-	"on-click-right": "$HOME/.config/hypr/scripts/HyprLayoutModule.sh next",
-	"tooltip": true,
-	"escape": false
-},
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{id}"

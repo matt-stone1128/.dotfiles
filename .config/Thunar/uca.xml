@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
+	<icon>emacs</icon>
+	<name>emacs</name>
+	<submenu></submenu>
+	<unique-id>1787344238345822-1</unique-id>
+	<command>pkexec env WAYLAND_DISPLAY=&quot;$WAYLAND_DISPLAY&quot; XDG_RUNTIME_DIR=&quot;$XDG_RUNTIME_DIR&quot; nvim %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+</action>
+<action>
 	<icon>utilities-terminal</icon>
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
@@ -25,6 +37,18 @@
 	<directories/>
 </action>
 <action>
+	<icon>010editor</icon>
+	<name>sudo edit</name>
+	<submenu></submenu>
+	<unique-id>1787336043632566-1</unique-id>
+	<command>pkexec env WAYLAND_DISPLAY=$WAYLAND_DISPLAY  XDG_RUNTIME_DIR=&quot;$XDG_RUNTIME_DIR&quot; subl %F</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+</action>
+<action>
 	<icon>com.visualstudio.code</icon>
 	<name>Open in VSCode</name>
 	<submenu></submenu>
@@ -45,7 +69,7 @@
 	<name>Open as root in VSCode</name>
 	<submenu></submenu>
 	<unique-id>1748160100000000-2</unique-id>
-	<command>sh -c 'pkexec env DISPLAY=&quot;$DISPLAY&quot; XAUTHORITY=&quot;$XAUTHORITY&quot; code --no-sandbox --user-data-dir=/root/.vscode-root &quot;$@&quot;' _ %F</command>
+	<command>sh -c &apos;pkexec env DISPLAY=&quot;$DISPLAY&quot; XAUTHORITY=&quot;$XAUTHORITY&quot; code --no-sandbox --user-data-dir=/root/.vscode-root &quot;$@&quot;&apos; _ %F</command>
 	<description>Open the selection in Visual Studio Code as root</description>
 	<range></range>
 	<patterns>*</patterns>
@@ -148,7 +172,7 @@
 	<name>Extract here</name>
 	<submenu></submenu>
 	<unique-id>1489091300385082-4</unique-id>
-	<command>sh -c 'case &quot;$1&quot; in *.zip|*.ZIP) unzip &quot;$1&quot; ;; *) tar xf &quot;$1&quot; ;; esac' _ %f</command>
+	<command>sh -c &apos;case &quot;$1&quot; in *.zip|*.ZIP) unzip &quot;$1&quot; ;; *) tar xf &quot;$1&quot; ;; esac&apos; _ %f</command>
 	<description></description>
 	<range></range>
 	<patterns>*.tar;*.tar.gz;*.tgz;*.tar.bz2;*.tbz2;*.tar.xz;*.txz;*.tar.zst;*.zip;*.ZIP</patterns>
@@ -159,7 +183,7 @@
 	<name>Compress here (.tar.gz)</name>
 	<submenu></submenu>
 	<unique-id>1748160100000000-4</unique-id>
-	<command>sh -c 'cd &quot;$(dirname &quot;$1&quot;)&quot; || exit; b=&quot;$(basename &quot;$1&quot;)&quot;; tar czf &quot;$b.tar.gz&quot; &quot;$b&quot;' _ %f</command>
+	<command>sh -c &apos;cd &quot;$(dirname &quot;$1&quot;)&quot; || exit; b=&quot;$(basename &quot;$1&quot;)&quot;; tar czf &quot;$b.tar.gz&quot; &quot;$b&quot;&apos; _ %f</command>
 	<description>Compress the selection into a .tar.gz archive</description>
 	<range></range>
 	<patterns>*</patterns>
@@ -172,7 +196,7 @@
 	<name>Convert png to jpg</name>
 	<submenu></submenu>
 	<unique-id>1510662686010963-1</unique-id>
-	<command>magick %f -background white -flatten -quality 90 &quot;$(basename %f | sed 's/\.[^.]*$/.jpg/')&quot;</command>
+	<command>magick %f -background white -flatten -quality 90 &quot;$(basename %f | sed &apos;s/\.[^.]*$/.jpg/&apos;)&quot;</command>
 	<description>Convert png to jpg</description>
 	<range></range>
 	<patterns>*.png</patterns>
@@ -183,7 +207,7 @@
 	<name>Convert webp to jpg</name>
 	<submenu></submenu>
 	<unique-id>1510662686010963-2</unique-id>
-	<command>magick %f -background white -flatten -quality 90 &quot;$(basename %f | sed 's/\.[^.]*$/.jpg/')&quot;</command>
+	<command>magick %f -background white -flatten -quality 90 &quot;$(basename %f | sed &apos;s/\.[^.]*$/.jpg/&apos;)&quot;</command>
 	<description>Convert webp to jpg</description>
 	<range></range>
 	<patterns>*.webp</patterns>
@@ -194,7 +218,7 @@
 	<name>Convert jpg/png to webp</name>
 	<submenu></submenu>
 	<unique-id>1510662686010963-3</unique-id>
-	<command>magick %f -quality 90 &quot;$(basename %f | sed 's/\.[^.]*$/.webp/')&quot;</command>
+	<command>magick %f -quality 90 &quot;$(basename %f | sed &apos;s/\.[^.]*$/.webp/&apos;)&quot;</command>
 	<description>Convert jpg/png to webp</description>
 	<range></range>
 	<patterns>*.jpg;*.jpeg;*.JPG;*.JPEG;*.png;*.PNG</patterns>
@@ -239,7 +263,7 @@
 	<name>Copy full path</name>
 	<submenu></submenu>
 	<unique-id>1748160100000000-3</unique-id>
-	<command>sh -c 'out=$(for f in &quot;$@&quot;; do echo &quot;$f&quot;; done); echo -n &quot;$out&quot; | xclip -selection clipboard' _ %F</command>
+	<command>sh -c &apos;out=$(for f in &quot;$@&quot;; do echo &quot;$f&quot;; done); echo -n &quot;$out&quot; | xclip -selection clipboard&apos; _ %F</command>
 	<description>Copy the full path of the selection to the clipboard</description>
 	<range></range>
 	<patterns>*</patterns>
@@ -255,7 +279,7 @@
 	<name>Create symlink</name>
 	<submenu></submenu>
 	<unique-id>1526631663081446-14</unique-id>
-	<command>sh -c 'ln -s &quot;$1&quot; &quot;$1-link&quot;' _ %f</command>
+	<command>sh -c &apos;ln -s &quot;$1&quot; &quot;$1-link&quot;&apos; _ %f</command>
 	<description>Softlink between two files or directories</description>
 	<range></range>
 	<patterns>*</patterns>

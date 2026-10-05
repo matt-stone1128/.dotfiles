@@ -1,5 +1,5 @@
 configuration {
-modi: "window,drun,ssh,run";
+modi: "window,drun,ssh,run,combi";
 /*  width: 50;*/
 /*  lines: 15;*/
 /*  columns: 2;*/
@@ -151,4 +151,7 @@ modi: "window,drun,ssh,run";
 }
 //@theme "/usr/share/rofi/themes/android_notification.rasi"
 /*  window { fullscreen: true; } */
-@theme "/usr/share/rofi/themes/Adapta-Nokto.rasi"
+//@theme "/usr/share/rofi/themes/Adapta-Nokto.rasi"
+@import "~/.config/rofi/wallust/colors-rofi.rasi"
+/* Import your color palette */
+//@import "~/.config/rofi/colors.rasi"

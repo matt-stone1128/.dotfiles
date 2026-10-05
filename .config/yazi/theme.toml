@@ -1,3 +1,6 @@
 
 [flavor]
+light = "noctalia"
+dark  = "noctalia"
+light = "noctalia"
 use = "catppuccin-macchiato"
