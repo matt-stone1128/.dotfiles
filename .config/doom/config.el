@@ -67,6 +67,9 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(setq dired-dwim-target t)
+(setq dired-kill-when-opening-new-dired-buffer t)
+(setq dired-mouse-drag-files t)
 
 (setq fancy-splash-image (concat doom-private-dir "splash/bluee.png"))
 (custom-set-faces!
@@ -149,7 +152,7 @@
        :desc "open with vsplit neotree"       "N" #'neotree-enter-vertical-split
        :desc "tabs globally"                  "c" #'centaur-tabs-mode
        :desc "tabs locally"                   "C" #'centaur-tabs-loc
-
+       :desc "dirvish side"                   "s" #'dirvish-side
        ))
 
 (setq display-line-numbers-type t)
@@ -200,7 +203,11 @@
 (after! treemacs
     (setq doom-themes-treemacs-theme "doom-colors")
     (setq doom-themes-treemacs-enable-variable-pitch t)
-    (setq treemacs-selected-winning-project (expand-file-name "~")))
+    (setq treemacs-selected-winning-project (expand-file-name "~/"))
+    (setq projectile-project-search-path '(("~/") ("~/projects/")))
+    )
+
+
 
 (use-package! peep-dired
   :after dired

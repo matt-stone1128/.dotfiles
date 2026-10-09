@@ -1,7 +1,7 @@
 #+title: Config
 #+author: Matt Stone
 #+startup: showeverything
-
+#+TOC: t
 * Opening
 Gotta have this at the beginning of the config file.
 #+begin_src emacs-lisp :tangle yes
@@ -81,7 +81,9 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-
+(setq dired-dwim-target t)
+(setq dired-kill-when-opening-new-dired-buffer t)
+(setq dired-mouse-drag-files t)
 #+end_src
 
 * Appearance
@@ -183,7 +185,7 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
        :desc "open with vsplit neotree"       "N" #'neotree-enter-vertical-split
        :desc "tabs globally"                  "c" #'centaur-tabs-mode
        :desc "tabs locally"                   "C" #'centaur-tabs-loc
-
+       :desc "dirvish side"                   "s" #'dirvish-side
        ))
 
 (setq display-line-numbers-type t)
@@ -248,9 +250,16 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 (after! treemacs
     (setq doom-themes-treemacs-theme "doom-colors")
     (setq doom-themes-treemacs-enable-variable-pitch t)
-    (setq treemacs-selected-winning-project (expand-file-name "~")))
+    (setq treemacs-selected-winning-project (expand-file-name "~/"))
+    (setq projectile-project-search-path '(("~/") ("~/projects/")))
+    )
 #+end_src
 
+** Dirvish
+#+begin_src emacs-lisp :tangle yes
+
+
+#+end_src
 * Peep dired
 #+begin_src emacs-lisp :tangle yes
 (use-package! peep-dired
